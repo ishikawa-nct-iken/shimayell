@@ -13,7 +13,7 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 8000;
 
 app.get('/', async (req, res) => {
-    res.status(200).end();
+    res.render('index.ejs');
 });
 
 app.listen(PORT, async (req, res) => {
