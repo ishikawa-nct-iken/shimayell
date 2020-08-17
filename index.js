@@ -10,6 +10,7 @@ const fs = require('fs');
 const dialogflowResponse = require('./dialogflowResponse');
 const dialogflowRequest = require('./dialogflowRequest');
 const VoiceText = require('./voicetext');
+const auth = require('./auth');
 
 app.use(bodyParser.urlencoded({
     extended: true,
@@ -25,6 +26,7 @@ app.get('/', async (req, res) => {
     res.render('index.ejs');
 });
 
+app.use('/dialogflow-webhook', auth);
 app.post('/dialogflow-webhook', async (req, res) => {
     const queryResult = req.body.queryResult;
 
