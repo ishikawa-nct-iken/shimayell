@@ -2,6 +2,7 @@
 
 // shimayell
 
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -10,6 +11,7 @@ const fs = require('fs');
 const dialogflowResponse = require('./dialogflowResponse');
 const dialogflowRequest = require('./dialogflowRequest');
 const VoiceText = require('./voicetext');
+const auth = require('./auth');
 
 app.use(bodyParser.urlencoded({
     extended: true,
@@ -17,7 +19,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 
 const voicetext = new VoiceText(process.env.VOICE_TEXT_API_KEY);
 
@@ -25,6 +27,7 @@ app.get('/', async (req, res) => {
     res.render('index.ejs');
 });
 
+app.use('/dialogflow-webhook', auth);
 app.post('/dialogflow-webhook', async (req, res) => {
     const queryResult = req.body.queryResult;
 
