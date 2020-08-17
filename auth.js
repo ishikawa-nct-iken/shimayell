@@ -1,6 +1,5 @@
 'use strict';
 
-require('dotenv').config();
 const auth = require('basic-auth');
 
 const admins = {
