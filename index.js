@@ -2,6 +2,7 @@
 
 // shimayell
 
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 
 const voicetext = new VoiceText(process.env.VOICE_TEXT_API_KEY);
 
