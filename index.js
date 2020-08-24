@@ -88,6 +88,8 @@ app.post('/shimayell/get-voice', (req, res) => {
     // ファイルのパス
     const voicepath = `voices/${voicename}`;
 
+    // ファイルが既に存在するかどうか
+    // 存在しているなら作成しない
     fs.stat(`./public/${voicepath}`, (err) => {
         if (err) {
 

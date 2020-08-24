@@ -6,17 +6,9 @@ const response = (queryResult) => {
     const displayName = queryResult.intent.displayName;
 
     switch (displayName) {
-        case 'Game':
-            const gameName = queryResult.parameters.game;
-
-            switch (gameName) {
-                case 'おみくじ':
-                    const kuji = omikuji();
-                    return `${kuji}を引きました！`;
-
-                default:
-                    return `なんのゲームか分かりませんでした...`;
-            }
+        case 'おみくじ':
+            const kuji = omikuji();
+            return `${kuji}を引きました！`;
 
         default:
             return `APIサーバ「${queryResult.queryText} 」`;
